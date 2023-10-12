@@ -62,12 +62,16 @@ class TeamMembersController {
     function store() {
         $team = new Team; // has a maximum of three members
 
-        $team->add(new Member('victor braz'));
-        $team->add(new Member('igor braz'));
-        $team->add(new Member('bruno braz'));
-        $team->add(new Member('lorena braz'));
+        try {
+            $team->add(new Member('victor braz'));
+            $team->add(new Member('igor braz'));
+            $team->add(new Member('bruno braz'));
+            $team->add(new Member('lorena braz'));
 
-        dd($team->members());
+            var_dump($team->members());
+        } catch(\Exception $error) {
+            var_dump($error->getMessage());
+        }
     }
 }
 
