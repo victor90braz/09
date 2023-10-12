@@ -57,12 +57,21 @@ class Team {
     }
 }
 
-$team = new Team; // has a maximum of three members
+class TeamMembersController {
 
-$team->add(new Member('victor braz'));
-$team->add(new Member('igor braz'));
-$team->add(new Member('bruno braz'));
-$team->add(new Member('lorena braz'));
+    function store() {
+        $team = new Team; // has a maximum of three members
 
-dd($team->members());
+        $team->add(new Member('victor braz'));
+        $team->add(new Member('igor braz'));
+        $team->add(new Member('bruno braz'));
+        $team->add(new Member('lorena braz'));
+
+        dd($team->members());
+    }
+}
+
+(new TeamMembersController)->store();
+
+
 
