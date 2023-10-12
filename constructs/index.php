@@ -31,7 +31,9 @@ class User {
 
 class TeamException extends Exception {
 
-    protected $message = 'Team has a maximum of three members22!';
+    public static function fromTooManyMembers() {
+        return new static ('Team has a maximum of three members!');
+    }
 }
 
 class Member {
@@ -50,7 +52,7 @@ class Team {
     public function add(Member $member) {
 
         if (count($this->members) === 3) {
-            throw new TeamException;
+            throw TeamException::fromTooManyMembers();
         }
 
         $this->members[] = $member;
