@@ -44,14 +44,14 @@ class Team {
 
     public function add(Member $member) {
 
+        if (count($this->members) === 3) {
+            throw new Exception('Team has a maximum of three members!');
+        }
+
         $this->members[] = $member;
     }
 
     public function members() {
-
-        if (count($this->members) > 3) {
-            throw new Exception('Team has a maximum of three members!');
-        }
 
         return $this->members;
     }
