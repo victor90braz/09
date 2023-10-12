@@ -29,6 +29,10 @@ class User {
 
 // ---------------------------------------------
 
+class MaximumMembersReached extends Exception {
+
+}
+
 class Member {
 
     public $name;
@@ -45,7 +49,7 @@ class Team {
     public function add(Member $member) {
 
         if (count($this->members) === 3) {
-            throw new Exception('Team has a maximum of three members!');
+            throw new MaximumMembersReached('Team has a maximum of three members!');
         }
 
         $this->members[] = $member;
@@ -69,7 +73,7 @@ class TeamMembersController {
             $team->add(new Member('lorena braz'));
 
             var_dump($team->members());
-        } catch(\Exception $error) {
+        } catch(\MaximumMembersReached $error) {
             var_dump($error->getMessage());
         }
     }
