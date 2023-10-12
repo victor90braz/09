@@ -5,7 +5,6 @@ require_once $basePath . "functions.php";
 
 // exceptions
 
-
 class Video {
 
 }
@@ -23,6 +22,41 @@ class User {
     }
 }
 
-$user = (new User())->download(new Video('video'));
+// $user = (new User())->download(new Video('video'));
 
-dd($user);
+// dd($user);
+
+
+// ---------------------------------------------
+
+class Member {
+
+    public $name;
+
+    public function __construct($name) {
+
+        $this->name = $name;
+    }
+}
+class Team {
+
+    protected $members = [];
+
+    public function add(Member $member) {
+
+        $this->members[] = $member;
+    }
+
+    public function members() {
+        return $this->members;
+    }
+}
+
+$team = new Team;
+$team->add(new Member('victor braz'));
+$team->add(new Member('igor braz'));
+$team->add(new Member('bruno braz'));
+$team->add(new Member('lorena braz'));
+
+dd($team->members());
+
