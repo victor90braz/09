@@ -5,13 +5,24 @@ require_once $basePath . "functions.php";
 
 // exceptions
 
-function add($one, $two) {
 
-    if (! is_float($one) || ! is_float($two)) {
-        throw new \Exception('has to be an number ');
+class Video {
+
+}
+class User {
+
+    public function download(Video $video) {
+
+        if (! $this->subscribe()) {
+            throw new \Exception('You must be subscribe to download the video!');
+        }
     }
 
-    return $one + $two;
+    public function subscribe() {
+        return false;
+    }
 }
 
-echo add(2,[]);
+$user = (new User())->download(new Video('video'));
+
+dd($user);
